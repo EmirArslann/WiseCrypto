@@ -1,5 +1,4 @@
 
-
 :root{
     --text-primary:#000;
     --bgPrimary:#fff;
@@ -44,6 +43,7 @@ a:hover{
     height: 100vh;
     margin: 0px;
     background-color: rgb(0, 21, 41);
+    
 }
 
 .logo-container{
@@ -52,6 +52,7 @@ a:hover{
     padding: 20px;
     align-items: center;
     width: 100%;
+    flex-direction: column;
 }
 .logo{
     margin:0 0 0 15px;
