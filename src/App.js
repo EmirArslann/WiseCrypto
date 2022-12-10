@@ -1,15 +1,20 @@
 import React from 'react'
 import{ Switch, Route, Link } from 'react-router-dom';
 import { Layout, Typography, Space } from "antd";
+import { useEffect } from 'react';
 
 import { Navbar, Exchanges, Homepage, CryptoDetails, News, Cryptorcurrencies } from "./components"
 import './App.css'
+import { GoogleCircleFilled } from '@ant-design/icons';
 
 const App = () => {
+
+
   return (
     <div className='app'>
         <div className='navbar'>
             <Navbar />
+            
         </div>
         <div className='main'>
             <Layout>
@@ -34,7 +39,6 @@ const App = () => {
                         <Route exact path='/news'>
                             <News />         
                         </Route>
-
                     </Switch>
                 </div>
             </Layout>
