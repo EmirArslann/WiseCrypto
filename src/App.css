@@ -379,3 +379,15 @@ width: 70%;
     padding: 20px;
     align-items: center;
 }
+
+.user-name{
+    margin: 10px;
+}
+
+#signInDiv{
+    margin: 10px 10px;
+}
+
+.user-name{
+    color: gray;
+}
