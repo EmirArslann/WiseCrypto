@@ -385,9 +385,23 @@ width: 70%;
 }
 
 #signInDiv{
-    margin: 10px 10px;
+    margin-left: 10px;
 }
 
 .user-name{
     color: gray;
+}
+
+.user-div{
+    margin: 5px;
+}
+
+.sign-out{
+    margin-left: 10px;
+    height: 30px;
+    color: black;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: lightgrey;
 }
