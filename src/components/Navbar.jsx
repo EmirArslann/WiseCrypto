@@ -61,6 +61,8 @@ const Navbar = () => {
             document.getElementById("signInDiv"),
             { theme: "outline", size: "large"}
         )
+
+        google.accounts.id.prompt();
     }, [])
 
 
@@ -76,6 +78,7 @@ const Navbar = () => {
             </Button>
         </div>
         <div id='signInDiv'>
+            
         
         </div>
 
@@ -97,7 +100,8 @@ const Navbar = () => {
                     <Link to="/news">News</Link>
                 </Menu.Item>
                 
-                < button className='sign-out'  onClick={ (e) => handleSignOut(e)}>Sign Out</button>
+                
+
                 { user && 
                 <div className='user-div' >
                     <img classname='userimage' src={user.picture}></img>
@@ -105,6 +109,13 @@ const Navbar = () => {
                 </div>
         
                 }
+                
+                { Object.keys(user).length != 0 &&
+                    <button className='sign-out' onClick={ (e) => handleSignOut(e)}>
+                        Sign Out
+                    </button>
+                }
+
             </Menu>
             
         )}
