@@ -61,6 +61,8 @@ const Navbar = () => {
             document.getElementById("signInDiv"),
             { theme: "outline", size: "large"}
         )
+
+        google.accounts.id.prompt();
     }, [])
 
 
@@ -76,16 +78,9 @@ const Navbar = () => {
             </Button>
         </div>
         <div id='signInDiv'>
+            
         
         </div>
-        < button onClick={ (e) => handleSignOut(e)}>Sign Out</button>
-        { user && 
-                <div className='user-div' >
-                    <img src={user.picture}></img>
-                    <p className='user-name'>{user.name}</p>
-                </div>
-        
-        }
 
         {activeMenu && (
             <Menu theme='dark'>
@@ -105,6 +100,22 @@ const Navbar = () => {
                     <Link to="/news">News</Link>
                 </Menu.Item>
                 
+                
+
+                { user && 
+                <div className='user-div' >
+                    <img classname='userimage' src={user.picture}></img>
+                    <p className='user-name'>{user.name}</p>
+                </div>
+        
+                }
+                
+                { Object.keys(user).length != 0 &&
+                    <button className='sign-out' onClick={ (e) => handleSignOut(e)}>
+                        Sign Out
+                    </button>
+                }
+
             </Menu>
             
         )}
