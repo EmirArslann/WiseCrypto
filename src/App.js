@@ -3,7 +3,7 @@ import{ Switch, Route, Link } from 'react-router-dom';
 import { Layout, Typography, Space } from "antd";
 import { useEffect } from 'react';
 
-import { Navbar, Exchanges, Homepage, CryptoDetails, News, Cryptorcurrencies } from "./components"
+import { Navbar, Exchange, Homepage, CryptoDetails, News, Cryptorcurrencies } from "./components"
 import './App.css'
 import { GoogleCircleFilled } from '@ant-design/icons';
 
@@ -25,7 +25,7 @@ const App = () => {
                         </Route>
 
                         <Route exact path='/exchanges'>
-                            <Exchanges />         
+                            <Exchange />         
                         </Route>
 
                         <Route exact path='/cryptocurrencies'>

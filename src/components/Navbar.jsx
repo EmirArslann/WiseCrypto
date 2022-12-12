@@ -13,7 +13,7 @@ const Navbar = () => {
     const [screenSize, setScreenSize] = useState(null);
     const [user, setUser] = useState([]);
 
-    console.log(user)
+    
 
     useEffect(() => {
         const handleResize = () => setScreenSize(window.innerWidth);
