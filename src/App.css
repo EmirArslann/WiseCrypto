@@ -406,3 +406,12 @@ width: 70%;
     border-radius: 10px;
     background-color: lightgrey;
 }
+
+.sign-but{
+    height: 30px;
+    color: black;
+}
+
+.sign-input{
+    color: black;
+}

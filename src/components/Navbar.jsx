@@ -1,3 +1,4 @@
+
 import React  from 'react'
 import { Button, Menu, Typography, Avatar } from 'antd';
 import { Link} from 'react-router-dom';
@@ -12,9 +13,26 @@ const Navbar = () => {
     const [activeMenu, setActiveMenu] = useState(true);
     const [screenSize, setScreenSize] = useState(null);
     const [user, setUser] = useState([]);
+    const [description, setDescription] = useState("")
 
-    
-
+    const sendSignData = async (e) => {
+        e.preventDefault()
+        try {
+            const body = {description};
+            const response = await fetch("http://localhost:8000/users", {
+                method : "POST",
+                headers : { "Content-Type" : "application/json" },
+                body : JSON.stringify(body),
+                
+            });
+            console.log(response)
+        } catch (err) {
+            console.error(err.message);
+            
+        }
+      }
+      
+      
     useEffect(() => {
         const handleResize = () => setScreenSize(window.innerWidth);
 
@@ -34,13 +52,15 @@ const Navbar = () => {
 
     }, [screenSize])
     
-    function handleCallbackResponse(response) {
+    function handleCallbackResponse(response)  {
         const div =  document.getElementById("signInDiv")
         console.log("Encoded JWT ID token" + response.credential)
         let userObject = jwt_decode(response.credential)
         console.log(userObject)
         setUser(userObject);
         div.hidden = true;
+
+        
 
     }
 
@@ -59,7 +79,7 @@ const Navbar = () => {
         })
         google.accounts.id.renderButton(
             document.getElementById("signInDiv"),
-            { theme: "outline", size: "large"}
+            { theme: "outline", size: "large"},
         )
 
         google.accounts.id.prompt();
@@ -99,13 +119,23 @@ const Navbar = () => {
                 <Menu.Item icon={<BulbOutlined />}>
                     <Link to="/news">News</Link>
                 </Menu.Item>
+                <form onSubmit={sendSignData}>
+                    <input 
+                    className='sign-input'
+                    value={description}
+                    onChange= {e => setDescription(e.target.value)}
+                    >
+
+                    </input >
+                    <button className='sign-but'  type="submit">sign up</button>
+                </form>
                 
                 
 
                 { user && 
                 <div className='user-div' >
-                    <img classname='userimage' src={user.picture}></img>
-                    <p className='user-name'>{user.name}</p>
+                    <img  classname='userimage' src={user.picture} ></img>
+                    <p value={user} className='user-name'>{user.name} </p>
                 </div>
         
                 }

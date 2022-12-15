@@ -1,11 +1,10 @@
 import React from 'react'
 import{ Switch, Route, Link } from 'react-router-dom';
 import { Layout, Typography, Space } from "antd";
-import { useEffect } from 'react';
 
 import { Navbar, Exchange, Homepage, CryptoDetails, News, Cryptorcurrencies } from "./components"
 import './App.css'
-import { GoogleCircleFilled } from '@ant-design/icons';
+
 
 const App = () => {
 
