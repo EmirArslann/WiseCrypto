@@ -17,14 +17,15 @@ app.use(express.json());
 app.post("/users", async(req, res) => {
     try {
         
-        const {description} = req.body;
+        const {Email} = req.body;
         const {password} = req.body;
-        const newUser = await pool.query("INSERT INTO logger (description) VALUES($1) RETURNING * ", 
-        [description]);
+        const {name} = req.body;
+        const newUser = await pool.query("INSERT INTO logger (password, Email, name) VALUES($1 ,$2, $3) RETURNING * ", 
+        [password, Email, name]);
 
         res.json(newUser);
 
-    } catch (error) {
+    } catch (err) {
         console.error(err.message)
     }
 });
@@ -63,10 +64,10 @@ app.get("/users/:id", async (req, res) => {
 app.put("/users/:id", async (req, res) => {
     try {
         const {id} = req.params;
-        const { description } = req.body;
+        const { Email, password } = req.body;
         const updateUser = await pool.query(
             "UPDATE logger SET description = $1 WHERE logger_id = $2" , 
-            [description, id]);
+            [Email, password, id]);
 
         res.json("User was updated")
     } catch (err) {

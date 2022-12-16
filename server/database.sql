@@ -2,5 +2,7 @@ CREATE DATABASE pernuser;
 
 CREATE TABLE logger(
     logger_id SERIAL PRIMARY KEY,
-    description VARCHAR(255)
+    password VARCHAR(255),
+    Email VARCHAR(255),
+    name Varchar(255),
 );

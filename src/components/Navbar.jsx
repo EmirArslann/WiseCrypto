@@ -3,7 +3,9 @@ import React  from 'react'
 import { Button, Menu, Typography, Avatar } from 'antd';
 import { Link} from 'react-router-dom';
 import { HomeOutlined, MoneyCollectOutlined, BulbOutlined, FundOutlined, MenuOutlined } from '@ant-design/icons';
-import jwt_decode from 'jwt-decode';
+
+import Login from './Login';
+import Register from './Register';
 
 
 import icon from '../images/logo.png'
@@ -12,25 +14,16 @@ import { useEffect } from 'react';
 const Navbar = () => {
     const [activeMenu, setActiveMenu] = useState(true);
     const [screenSize, setScreenSize] = useState(null);
-    const [user, setUser] = useState([]);
-    const [description, setDescription] = useState("")
+    const [currentForm, setCurrentform] = useState("login");
 
-    const sendSignData = async (e) => {
-        e.preventDefault()
-        try {
-            const body = {description};
-            const response = await fetch("http://localhost:8000/users", {
-                method : "POST",
-                headers : { "Content-Type" : "application/json" },
-                body : JSON.stringify(body),
-                
-            });
-            console.log(response)
-        } catch (err) {
-            console.error(err.message);
-            
-        }
+    
+
+
+    const toggleForm = (formName) => {
+        setCurrentform(formName);
       }
+
+    
       
       
     useEffect(() => {
@@ -52,39 +45,8 @@ const Navbar = () => {
 
     }, [screenSize])
     
-    function handleCallbackResponse(response)  {
-        const div =  document.getElementById("signInDiv")
-        console.log("Encoded JWT ID token" + response.credential)
-        let userObject = jwt_decode(response.credential)
-        console.log(userObject)
-        setUser(userObject);
-        div.hidden = true;
-
-        
-
-    }
-
-    function handleSignOut(event){
-        const div =  document.getElementById("signInDiv")
-        setUser({});
-        div.hidden = false;
-
-    }
-     
-    useEffect(() => {
-        /* global google*/
-        google.accounts.id.initialize({
-            client_id: "275235180683-pmecb035a2i055fj6bfumc7enuf3vtjk.apps.googleusercontent.com",
-            callback: handleCallbackResponse
-        })
-        google.accounts.id.renderButton(
-            document.getElementById("signInDiv"),
-            { theme: "outline", size: "large"},
-        )
-
-        google.accounts.id.prompt();
-    }, [])
-
+    
+    
 
   return (
     <div className='nav-container'>
@@ -97,11 +59,8 @@ const Navbar = () => {
                 <MenuOutlined></MenuOutlined>
             </Button>
         </div>
-        <div id='signInDiv'>
-            
         
-        </div>
-
+ 
         {activeMenu && (
             <Menu theme='dark'>
                 <Menu.Item icon={<HomeOutlined />}>
@@ -118,33 +77,13 @@ const Navbar = () => {
                 
                 <Menu.Item icon={<BulbOutlined />}>
                     <Link to="/news">News</Link>
-                </Menu.Item>
-                <form onSubmit={sendSignData}>
-                    <input 
-                    className='sign-input'
-                    value={description}
-                    onChange= {e => setDescription(e.target.value)}
-                    >
-
-                    </input >
-                    <button className='sign-but'  type="submit">sign up</button>
-                </form>
-                
-                
-
-                { user && 
-                <div className='user-div' >
-                    <img  classname='userimage' src={user.picture} ></img>
-                    <p value={user} className='user-name'>{user.name} </p>
-                </div>
-        
+                </Menu.Item>                
+                {
+                    currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
                 }
-                
-                { Object.keys(user).length != 0 &&
-                    <button className='sign-out' onClick={ (e) => handleSignOut(e)}>
-                        Sign Out
-                    </button>
-                }
+            <>
+               
+            </>    
 
             </Menu>
             
