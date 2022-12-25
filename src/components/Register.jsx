@@ -7,19 +7,12 @@ export const Register = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(Email);
+        
         try {
-            const body = {Email, password, name};
             
-            const response = await fetch("http://localhost:8000/users", {
-                method : "POST",
-                headers : { "Content-Type" : "application/json" },
-                body : JSON.stringify(body),
-                
-            });
-            console.log(response)
+            
         } catch (err) {
-            console.error(err.message);
+            
             
         }
     }

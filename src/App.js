@@ -1,15 +1,12 @@
-import React from 'react'
-import{ Switch, Route, Link } from 'react-router-dom';
-import { Layout, Typography, Space } from "antd";
+import React from 'react';
+import { Switch, Route, Link } from 'react-router-dom';
+import { Layout, Typography, Space } from 'antd';
 
-import { Navbar, Exchange, Homepage, CryptoDetails, News, Cryptorcurrencies } from "./components"
-import './App.css'
-
+import { Navbar, Exchange, Homepage, CryptoDetails, News, Cryptorcurrencies } from './components';
+import './App.css';
 
 const App = () => {
-
-
-  return (
+    return (
     <div className='app'>
         <div className='navbar'>
             <Navbar />
